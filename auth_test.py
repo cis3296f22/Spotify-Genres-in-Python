@@ -1,3 +1,4 @@
+from time import sleep
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
@@ -13,7 +14,13 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
 # terminal for this program when prompted.
 
 results = sp.current_user_saved_tracks()
-for idx, item in enumerate(results['items']):
-    track = item['track']
-    print(idx, track['artists'][0]['name'], " – ", track['name'])
+i = 0
+
+while i < 1: 
+    for idx, item in enumerate(results['items']):
+        track = item['track']
+        print(idx, track['artists'][0]['name'], " – ", track['name'])
+        i += 1
+sleep(100)
+    
      
