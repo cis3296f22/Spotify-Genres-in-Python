@@ -12,4 +12,4 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
 top_artists = sp.current_user_top_artists(20, 0, "short_term")
 
 for index, artist in enumerate(top_artists["items"]):
-    print(index, artist["name"])
+    print(index, artist["genres"])
