@@ -27,7 +27,7 @@ def genre_view(request):
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
         client_id="c6f354662a924f81b9af0aa615832c2b",
         client_secret="6127244cbcc64eaa8a20959bb161c7bb",
-        redirect_uri="http://localhost", scope=scopes,))
+        redirect_uri="https://spotify-genres-in-python.herokuapp.com/genres/", scope=scopes,))
 
     top_artists = sp.current_user_top_artists(20, 0, "short_term")
     
