@@ -10,6 +10,9 @@ from django.http import HttpResponse
 def login_view(request):
     return render(request, "login.html",{})
 
+def redirect_view(request):
+    return render(request, "<h1>Redirect</h1>", {})
+
 def genre_view(request):
     
       # Increment value in dictionary every time genre is found
