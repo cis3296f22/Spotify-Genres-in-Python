@@ -20,6 +20,7 @@ def main():
     # Sort genre count from highest to lowest frequency
     sorted_genres = sorted(genreDict.items(), reverse = True, key=lambda kv:
         (kv[1], kv[0]))
+    top_ten_genres = sorted_genres[0:10]
     
     ''' sorted_dict = {}
     for val in sorted_genres:
@@ -27,8 +28,11 @@ def main():
            if genreDict[key] == val:
                sorted_dict[key] = genreDict[key]'''
     
-    # Print sorted list
-    print(sorted_genres) 
+    for index, genre in enumerate(top_ten_genres):
+        # Print each genre and its count (sorted)
+        result = ', '.join(str(item) for item in genre)
+        print(index + 1, result)
+      
     
 # Increment value in dictionary every time genre is found
 def get_genre_frequency(genres, genreDict):
