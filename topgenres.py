@@ -1,3 +1,4 @@
+from time import sleep
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
@@ -32,6 +33,8 @@ def main():
         # Print each genre and its count (sorted)
         result = ', '.join(str(item) for item in genre)
         print(index + 1, result)
+        
+    sleep(100)
       
     
 # Increment value in dictionary every time genre is found
