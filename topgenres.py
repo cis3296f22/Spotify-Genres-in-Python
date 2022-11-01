@@ -13,15 +13,25 @@ def main():
     top_artists = sp.current_user_top_artists(20, 0, "short_term")
 
     genreDict = {}
-    for index, artist in enumerate(top_artists["items"]):
-        print(index, artist["genres"])
-        for genre in artist["genres"]:
-            get_genre_frequency(artist["genres"], genreDict)
+    for artist in top_artists["items"]:
+        print(artist["name"],  artist["genres"])
+        get_genre_frequency(artist["genres"], genreDict)
+        
+           
     print(genreDict)
+    # This part doesnt work right now
+    sorted_genres = sorted(genreDict.values)
+    sorted_dict = {}
+    for val in sorted_genres:
+       for key in genreDict.keys():
+           if genreDict[key] == val:
+               sorted_dict[key] = genreDict[key]
+    print(sorted_dict) 
     
-def get_genre_frequency(genres, genreDict): 
+def get_genre_frequency(genres, genreDict):
+
     for genre in genres:
-        if genreDict[genre]:
+        if genre in genreDict:
             genreDict[genre] += 1
         else: 
             genreDict[genre] = 1
