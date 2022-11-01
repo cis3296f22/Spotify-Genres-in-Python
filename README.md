@@ -3,7 +3,7 @@ This is a program that utilizes the Spotify API to allow a user to enhance their
 
 ### How to run this program
 - Click on "Releases"
-- Click on the auth_test.exe file
+- Click on the topgenres.exe file
 - When the program is finished downloading, click on it. If your browser shows a warning, show the options and click "keep". If Windows shows a warning, click "More Info" and then "Run Anyway"
 - Once the program opens, a browser page will open with a prompt to login to Spotify. 
 - Once logged in, a localhost URL will open. Copy the URL and paste it into the auth_test program. There should be a prompt in the program for you to paste the URL into.
