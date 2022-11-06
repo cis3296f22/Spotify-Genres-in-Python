@@ -46,8 +46,6 @@ def main():
         result = ', '.join(str(item) for item in genre)
         print(index + 1, result)
         
-    sleep(100)
-      
     
 # Increment value in dictionary every time genre is found
 def get_genre_frequency(genres, genreDict):
