@@ -23,6 +23,18 @@ def main():
         (kv[1], kv[0]))
     top_ten_genres = sorted_genres[0:10]
     
+    # (recommendations(seed_genres = top_tengenres[user_input_int + 1]))
+    genre_recommendations = sp.recommendations(seed_genres=['pop'], limit=20)
+    
+    print(sp.recommendation_genre_seeds())
+    recommended_list = (genre_recommendations["tracks"])
+    for items in recommended_list:
+        track_name = items["name"]
+        artists = items["artists"]
+        for artist in artists:
+            artist_name = artist["name"]
+        print(track_name, "by", artist_name)
+    
     ''' sorted_dict = {}
     for val in sorted_genres:
        for key in genreDict.keys():
