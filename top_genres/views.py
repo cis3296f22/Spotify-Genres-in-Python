@@ -1,4 +1,5 @@
 from multiprocessing import context
+from django import forms
 from django.shortcuts import render
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
@@ -6,6 +7,13 @@ from spotipy.oauth2 import SpotifyOAuth
 
 # Create your views here.
 from django.http import HttpResponse
+
+scopes = ["user-library-read", "user-top-read"]
+sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
+    client_id="c6f354662a924f81b9af0aa615832c2b",
+    client_secret="6127244cbcc64eaa8a20959bb161c7bb",
+    redirect_uri="http://localhost", scope=scopes,))
+
 
 def login_view(request):
     return render(request, "login.html",{})
@@ -24,13 +32,6 @@ def genre_view(request):
             else: 
                 genreDict[genre] = 1
         return genreDict
-    
-    scopes = ["user-library-read", "user-top-read"]
-
-    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
-        client_id="c6f354662a924f81b9af0aa615832c2b",
-        client_secret="6127244cbcc64eaa8a20959bb161c7bb",
-        redirect_uri="https://spotify-genres-in-python.herokuapp.com:8080", scope=scopes,))
 
     top_artists = sp.current_user_top_artists(20, 0, "short_term")
     
@@ -43,8 +44,11 @@ def genre_view(request):
     sorted_genres = sorted(genreDict.items(), reverse = True, key=lambda kv:
         (kv[1], kv[0]))
     top_ten_genres = sorted_genres[0:10]
+    filtered_top_genres = [x[0] for x in top_ten_genres]
+    
+    
     context = {
-        "data" : top_ten_genres
+        "data" : filtered_top_genres
     }
     
     ''' sorted_dict = {}
@@ -60,3 +64,26 @@ def genre_view(request):
       
     
     return render(request, "genres.html", context)
+
+def generate_playlist_view(request):
+    
+    # (recommendations(seed_genres = top_tengenres[user_input_int + 1]))
+    genre_recommendations = sp.recommendations(seed_artists=["4gzpq5DPGxSnKTe4SA8HAU"], limit=20)
+    
+    print(sp.recommendation_genre_seeds())
+    recommended_list = (genre_recommendations["tracks"])
+    for items in recommended_list:
+        track_name = items["name"]
+        artists = items["artists"]
+        for artist in artists:
+            artist_name = artist["name"]
+        print(track_name, "by", artist_name)
+        
+    #context = {
+    #    "list": 
+   # }
+
+def generate_menu_view(request):
+    
+    return render(request, "generate_menu.html", )
+

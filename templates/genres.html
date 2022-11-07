@@ -1,6 +1,8 @@
 
 {% for i in data %}
-<div class="row">
-    {{ i }}
-</div>
+<a href="{% url 'generate_menu_view' %}">{{i}}</a>
+<br>
 {% endfor %}
+
+
+

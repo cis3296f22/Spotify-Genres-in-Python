@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-n7*5lkwxc7fl%_+c1vm_rd%d6wm4s1ek6-qcs+=h3tr$^*+v6(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['spotify-genres-in-python.herokuapp.com']
+ALLOWED_HOSTS = ['spotify-genres-in-python.herokuapp.com', '127.0.0.1', 'http://localhost']
 
 
 # Application definition
