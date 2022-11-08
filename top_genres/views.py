@@ -50,26 +50,18 @@ def genre_view(request):
     context = {
         "data" : filtered_top_genres
     }
-    
-    ''' sorted_dict = {}
-    for val in sorted_genres:
-       for key in genreDict.keys():
-           if genreDict[key] == val:
-               sorted_dict[key] = genreDict[key]'''
-    
-    #for index, genre in enumerate(top_ten_genres):
-        # Print each genre and its count (sorted)
-       # result = ', '.join(str(item) for item in genre)
-        #print(index + 1, result)
       
-    
     return render(request, "genres.html", context)
 
 def generate_playlist_view(request):
     
+  
+    
     # (recommendations(seed_genres = top_tengenres[user_input_int + 1]))
     genre_recommendations = sp.recommendations(seed_artists=["4gzpq5DPGxSnKTe4SA8HAU"], limit=20)
     
+    new_list = []
+    song = ""
     print(sp.recommendation_genre_seeds())
     recommended_list = (genre_recommendations["tracks"])
     for items in recommended_list:
@@ -77,11 +69,14 @@ def generate_playlist_view(request):
         artists = items["artists"]
         for artist in artists:
             artist_name = artist["name"]
-        print(track_name, "by", artist_name)
-        
-    #context = {
-    #    "list": 
-   # }
+        song = track_name + " by " + artist_name
+        new_list.append(song)
+            
+    context = {
+        "list" : new_list
+    }
+    
+    return render(request, "playlist_generated.html", context)
 
 def generate_menu_view(request):
     
