@@ -9,6 +9,10 @@ This is a program that utilizes the Spotify API to allow a user to enhance their
 - Using the python package manager pip, installed Django and Spotipy using a variation of these commands:
   * py -m pip install spotipy
   * py -m pip install django
+- In the terminal, if you are in the project directory, type py manage.py runserver
+- A browser window will open. Click log in
+- Another tab will open. Copy the url and paste it into the terminal where prompted. Press enter
+- Go back to the browser tab where you clicked log in.
 
 ### How to build
 - Install Python 3.10
