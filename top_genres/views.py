@@ -39,6 +39,17 @@ def genre_view(request):
     genreDict = {}
     for artist in top_artists["items"]:
         get_genre_frequency(artist["genres"], genreDict)
+
+        #
+        for genre in top_ten_genres:
+            if genre in artist:
+                artist_id = artist["id"]
+                
+
+
+        #for genre in ten genres
+        #if genre in artist
+        #add artist seed
         
     # Sort genre count from highest to lowest frequency
     sorted_genres = sorted(genreDict.items(), reverse = True, key=lambda kv:
@@ -54,11 +65,13 @@ def genre_view(request):
     return render(request, "genres.html", context)
 
 def generate_playlist_view(request):
+
+#we want the seed to change depending on genre picked. top artist from that genre
     
   
     
     # (recommendations(seed_genres = top_tengenres[user_input_int + 1]))
-    genre_recommendations = sp.recommendations(seed_artists=["4gzpq5DPGxSnKTe4SA8HAU"], limit=20)
+    genre_recommendations = sp.recommendations(seed_artists=[artist_id], limit=20)
     
     new_list = []
     song = ""
