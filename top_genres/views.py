@@ -39,18 +39,13 @@ def genre_view(request):
     genreDict = {}
     for artist in top_artists["items"]:
         get_genre_frequency(artist["genres"], genreDict)
-
-        #
-        for genre in top_ten_genres:
-            if genre in artist:
-                artist_id = artist["id"]
-                
-
-
         #for genre in ten genres
         #if genre in artist
         #add artist seed
-        
+        for genre in top_ten_genres:
+            if genre in artist:
+                artist_id = artist["id"]
+                 
     # Sort genre count from highest to lowest frequency
     sorted_genres = sorted(genreDict.items(), reverse = True, key=lambda kv:
         (kv[1], kv[0]))
