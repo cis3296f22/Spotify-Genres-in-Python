@@ -57,10 +57,15 @@
                         {% for i in data %}
                             {% if forloop.counter < 6 %}
                             <div class ="p-3 border bg-light text-center">
+                                <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="success-outlined">{{i}}</label>
+                                <br>
+                                <!--
                                 <button type="button" class="btn btn-primary">
                                     <a href="{% url 'generate_menu_view' %}" class="text-light">{{i}}</a>
                                     <br>
                                 </button>
+                                -->
                             </div>
                             {% endif %}
                         {% endfor %}
@@ -69,10 +74,15 @@
                     {% for i in data %}
                         {% if forloop.counter > 5 and forloop.counter < 11 %}
                         <div class ="p-3 border bg-light text-center">
+                            <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+                            <label class="btn btn-outline-success" for="success-outlined">{{i}}</label>
+                            <br>
+                            <!--
                             <button type="button" class="btn btn-primary">
                                 <a href="{% url 'generate_menu_view' %}" class="text-light">{{i}}</a>
                                 <br>
                             </button>
+                            -->
                         </div>
                         {% endif %}
                     {% endfor %}
