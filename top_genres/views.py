@@ -4,6 +4,8 @@ from django.shortcuts import render
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
+# Create separate function that returns genre list
+# Pass the genre list to any view/template that needs it
 
 # Create your views here.
 from django.http import HttpResponse
