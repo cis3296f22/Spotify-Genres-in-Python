@@ -16,14 +16,7 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
     client_secret="6127244cbcc64eaa8a20959bb161c7bb",
     redirect_uri="http://localhost", scope=scopes,))
 
-
-def login_view(request):
-    return render(request, "login.html",{})
-
-def redirect_view(request):
-    return render(request, "<h1>Redirect</h1>", {})
-
-def genre_view(request):
+def get_genre_list():
     
       # Increment value in dictionary every time genre is found
     def get_genre_frequency(genres, genreDict):
@@ -54,9 +47,20 @@ def genre_view(request):
     top_ten_genres = sorted_genres[0:10]
     filtered_top_genres = [x[0] for x in top_ten_genres]
     
+    return filtered_top_genres
+
+def login_view(request):
+    return render(request, "login.html",{})
+
+def redirect_view(request):
+    return render(request, "<h1>Redirect</h1>", {})
+
+def genre_view(request, genres):
+    
+    genre_list = get_genre_list()
     
     context = {
-        "data" : filtered_top_genres
+        "data" : genre_list
     }
       
     return render(request, "genres.html", context)
@@ -68,7 +72,7 @@ def generate_playlist_view(request):
   
     
     # (recommendations(seed_genres = top_tengenres[user_input_int + 1]))
-    genre_recommendations = sp.recommendations(seed_artists=[artist_id], limit=20)
+    genre_recommendations = sp.recommendations(seed_artists=[], limit=20)
     
     new_list = []
     song = ""
