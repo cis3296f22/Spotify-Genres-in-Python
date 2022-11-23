@@ -120,3 +120,6 @@ def generate_menu_view(request):
     
     return render(request, "generate_menu.html", )
 
+
+#def get_genre_view(request, genreData):
+#    chosenGenre = 
