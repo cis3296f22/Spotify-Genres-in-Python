@@ -1,0 +1,33 @@
+A couple of things are gonna be needed coming up for the next sprint
+1.)
+A way to transfer data from the template to the view and back to the next template 
+This is gonna be done by creating a new view and new url and transferring the data using the url function 
+General Idea:
+https://stackoverflow.com/questions/22903438/django-how-to-pass-data-object-from-one-template-to-another-template
+
+2.)
+I need a way to access the top artists from each genre:
+
+When the generate custimizable playlist button is pressed 
+    it will have a variable associated with each radio button
+    and the data will be 'submitted' to a view. 
+I think the only thing that needs to be submitted is:
+    the index of the genre, 
+    and a variable short-term, medium-term, or long-term.
+    Use $('input[name=toggle]:checked').val() to get the value of said variable which retrieves value="" which can be set to index of genre or time variable 
+Since the top-genres will remain the same - 
+    if I have a way to access that same genre list that was passed into data 
+    then I can reuse that 'top-genre-list' on the customize page to generate the top artists in that genre in generate_menu template
+    the genre dictionary should be global or a django equivilant 
+
+3.)    
+When retreiving the top artists from that genre
+    list them as 'checked' buttons using same input:checked.val to dyamically add them to a dictionary
+    use this dictionary to gchool_id):
+    try:enerate playlist using the listed artists as seeds
+
+4.)
+Fix radio buttons
+
+     id="result"
+    
