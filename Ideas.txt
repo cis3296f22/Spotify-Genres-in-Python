@@ -29,5 +29,5 @@ When retreiving the top artists from that genre
 4.)
 Fix radio buttons
 
+     id="result"
     
-        

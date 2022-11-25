@@ -79,9 +79,10 @@ def generate_playlist_view(request):
     return render(request, "playlist_generated.html", context)
 
 def generate_menu_view(request):
-    
-    return render(request, "generate_menu.html", )
+    context = {}
+    genre_index = request.POST.get('genre_index', None)
+    context['genre_index'] = genre_index
 
+    return render(request, "generate_menu.html", context)
 
-#def get_genre_view(request, genreData):
-#    chosenGenre = 
+#use {{ genre_index }}
