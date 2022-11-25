@@ -77,7 +77,7 @@
                 {% for i in data %}
                 {% if forloop.counter > 5 and forloop.counter < 11 %}
                 <div class ="p-3 border bg-light text-center">
-                    <input type="radio" class="btn-check" name="top_genres_listed" id={{forloop.counter}} autocomplete="off">
+                    <input type="radio" class="btn-check" name="top_genres_listed" id={{forloop.counter}} autocomplete="off" value="{{forloop.counter}}">
                     <label class="btn btn-outline-success" for={{forloop.counter}}>{{i}}</label>
                     <br>
                     <!--
@@ -93,11 +93,26 @@
         </div>
         <div class="row p-3 justify-content-center align-items-center text-center">
             <div class="col">
-                <a class="btn btn-primary" href="{% url 'generate_menu_view' %}" role="button">Generate Customizable Playlist</a>
+                <button type="button" onclick="displayRadioValue()">
+                    Submit
+                </button>
+                <a class="btn btn-primary" href="{% url 'generate_menu_view' %}" role="button" onclick="displayRadioValue()">Generate Customizable Playlist</a>
+                <div id="result"></div>
             </div>
         </div>
     </div>
     
+    <script>
+        function displayRadioValue() {
+            var ele = document.getElementsByName('top_genres_listed');
+              
+            for(i = 0; i < ele.length; i++) {
+                if(ele[i].checked)
+                document.getElementById("result").innerHTML
+                        = "top_genres_listed: "+ele[i].value;
+            }
+        }
+    </script>
     
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
