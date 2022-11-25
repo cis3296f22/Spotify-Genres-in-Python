@@ -32,6 +32,12 @@
             height: 400px;
             border: 1px;
         }
+
+        .radiobuttons-container {
+            -webkit-column-count: 2;
+            -moz-column-count: 2;
+            column-count: 2;
+        }
     </style>
     <div class="container">
         <div class="row">
@@ -56,26 +62,8 @@
                 </div>
         </div>
         <div class="row custom-row justify-content-center align-items-center">
-            <div class="col-sm-6 bg-darkgrey">
+            <div class="col bg-darkgrey radiobuttons-container">
                 {% for i in data %}
-                {% if forloop.counter < 6 %}
-                <div class ="p-3 border bg-light text-center">
-                    <input type="radio" class="btn-check" name="top_genres_listed" id={{forloop.counter}} autocomplete="off">
-                    <label class="btn btn-outline-success" for={{forloop.counter}}>{{i}}</label>
-                    <br>
-                    <!--
-                        <button type="button" class="btn btn-primary">
-                            <a href="{% url 'generate_menu_view' %}" class="text-light">{{i}}</a>
-                            <br>
-                        </button>
-                    -->
-                </div>
-                {% endif %}
-                {% endfor %}
-            </div>
-            <div class="col-sm-6 bg-darkgrey">
-                {% for i in data %}
-                {% if forloop.counter > 5 and forloop.counter < 11 %}
                 <div class ="p-3 border bg-light text-center">
                     <input type="radio" class="btn-check" name="top_genres_listed" id={{forloop.counter}} autocomplete="off" value="{{forloop.counter}}">
                     <label class="btn btn-outline-success" for={{forloop.counter}}>{{i}}</label>
@@ -87,7 +75,6 @@
                         </button>
                     -->
                 </div>
-                {% endif %}
                 {% endfor %}
             </div>
         </div>
