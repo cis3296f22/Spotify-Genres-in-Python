@@ -119,7 +119,19 @@ def generate_playlist_view(request):
 def generate_menu_view(request):
     context = {}
     genre_index = request.POST.get('genre_index', None)
-    context['genre_index'] = genre_index
+    term = request.POST.get('term', None)
+
+    genre_list = get_genre_list()
+    selected_genre = genre_list[int(genre_index)-1]
+
+    unfiltered_artist_list = get_artists_of_genre(selected_genre)
+    named_artist_list = []
+    for artist in unfiltered_artist_list:
+        named_artist_list.append(artist["name"])
+
+    context['term'] = term
+
+    context['named_artist_list'] = named_artist_list
 
     return render(request, "generate_menu.html", context)
 

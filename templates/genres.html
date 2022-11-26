@@ -41,22 +41,22 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 text-center">
-                <h1>
-                    Emma's Top Genres
-                </h1>
+                <h2>Your Top Genres</h2>
             </div>
         </div>
+        <form action="/generate_menu/" method="post" id="toArtistForm"> 
+            {% csrf_token %}
             <div class="row p-3">
                     <div class="col-sm-4 text-center ">
-                        <input class="btn-check" type="radio" name="time" id="radio1" autocomplete="off" value="short_term">
+                        <input class="btn-check" type="radio" name="term" id="radio1" autocomplete="off" value="short_term">
                         <label class="btn btn-outline-primary" for="radio1">Last Month</label>
                     </div>
                     <div class="col-sm-4 text-center">
-                        <input class="btn-check" type="radio" name="time" id="radio2" autocomplete="off" value="medium_term">
+                        <input class="btn-check" type="radio" name="term" id="radio2" autocomplete="off" value="medium_term">
                         <label class="btn btn-outline-primary" for="radio2">Last 6 Months</label>
                     </div>
                     <div class="col-sm-4 text-center">
-                        <input class="btn-check" type="radio" name="time" id="radio3" autocomplete="off" value="long_term" checked>
+                        <input class="btn-check" type="radio" name="term" id="radio3" autocomplete="off" value="long_term" checked>
                         <label class="btn btn-outline-primary" for="radio3">All Time</label>
                     </div>
             </div>
@@ -64,7 +64,7 @@
                 <div class="col bg-darkgrey radiobuttons-container">
                     {% for i in data %}
                     <div class ="form-check p-3 border bg-light text-center">
-                        <input class="btn-check" type="radio" name="top_genres_listed" id={{forloop.counter}} autocomplete="off" value="{{forloop.counter}}" onclick="radioValue()">
+                        <input class="btn-check" type="radio" name="genre_index" id={{forloop.counter}} autocomplete="off" value="{{forloop.counter}}">
                         <label class="btn btn-outline-success" for={{forloop.counter}}>{{i}}</label>
                         <br>
                     </div>
@@ -73,22 +73,30 @@
             </div>
             <div class="row p-3 justify-content-center align-items-center text-center">
                 <div class="col">
-                    <form action="/generate_menu/" method="post" id="toArtistForm"> 
-                        {% csrf_token %}
-                        <button class="btn btn-primary" type="submit" name="genre_index" form="toArtistForm" id="result" value="">Generate Customizable Playlist</button> 
-                    </form>
+                        <button class="btn btn-primary" type="submit" form="toArtistForm" id="result">Generate Customizable Playlist</button> 
                 </div>
             </div>
-        
+        </form>
     </div>
     
     <script>
         function radioValue() {
             var ele = document.getElementsByName('top_genres_listed');
-              
+
             for(i = 0; i < ele.length; i++) {
                 if(ele[i].checked)
                 document.getElementById("result").setAttribute("value", ele[i].value)
+            }
+        }
+    </script>
+
+    <script>
+        function timeValue() {
+            var ele = document.getElementsByName('time');
+
+            for(i = 0; i < ele.length; i++) {
+                if(ele[i].checked)
+                document.getElementById("term").setAttribute("value", ele[i].value)
             }
         }
     </script>
