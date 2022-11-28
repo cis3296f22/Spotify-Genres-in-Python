@@ -125,13 +125,26 @@ def generate_menu_view(request):
     selected_genre = genre_list[int(genre_index)-1]
 
     unfiltered_artist_list = get_artists_of_genre(selected_genre)
-    named_artist_list = []
-    for artist in unfiltered_artist_list:
-        named_artist_list.append(artist["name"])
+
+    
+    #named_artist_list = []
+    #for artist in unfiltered_artist_list:
+    #    named_artist_list.append(artist["name"])
+
+    #artist_id_list = []
+    #for artist in unfiltered_artist_list:
+    #    artist_id_list.append(artist["id"])
+
+    #artist_list = {}
+    #for artist in unfiltered_artist_list:
+    #    artist_list
+
 
     context['term'] = term
 
-    context['named_artist_list'] = named_artist_list
+    context['artist_list'] = unfiltered_artist_list
+
+    #context['id'] = artist_id_list
 
     return render(request, "generate_menu.html", context)
 
