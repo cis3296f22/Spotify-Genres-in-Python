@@ -52,11 +52,11 @@
                   <input class="form-check-input" type="checkbox" role="switch" id={{i}} value=dict.id(forloop.counter)>
             
             -->
-            {% for name, id in artist_list.items %}
+            {% for i in artist_list %}
             {% if forloop.counter < 6 %}
             <div class="p-3 border bg-light">
               <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id={{i.name}} value={{i.id}}>
+                <input class="form-check-input" type="checkbox" role="switch" id={{i.name}} name={{forloop.counter}} value={{i.id}}>
                 <label class="form-check-label" for={{i.name}}>{{i.name}}</label>
               </div>
             </div>
