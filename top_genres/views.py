@@ -106,12 +106,14 @@ def genre_view(request):
 
 def generate_playlist_view(request):
     
+    artist_list = request.POST.get('artist_list')
+    
     # still uses test seed
             
     test_list = get_generated_playlist(["4gzpq5DPGxSnKTe4SA8HAU"])
     
     context = {
-        "list" : test_list
+        "playlist_list" : test_list
     }
     
     return render(request, "playlist_generated.html", context)
@@ -119,8 +121,17 @@ def generate_playlist_view(request):
 def generate_menu_view(request):
     context = {}
     genre_index = request.POST.get('genre_index', None)
-    context['genre_index'] = genre_index
-
+    genre_list = get_genre_list()
+    selected_genre = genre_list[int(genre_index)-1]
+    
+    unfiltered_artist_list = get_artists_of_genre(selected_genre)
+    named_artist_list = []
+    for artist in unfiltered_artist_list:
+        named_artist_list.append(artist["name"])
+        
+        
+    context['genre_index'] = named_artist_list
+    
     return render(request, "generate_menu.html", context)
 
 #use {{ genre_index }}
