@@ -25,7 +25,7 @@
         </div>
     </nav>
 </head>
-<body>
+<body class="custom-background">
     
     <style>
         .custom-row{
@@ -38,6 +38,10 @@
             -moz-column-count: 2;
             column-count: 2;
         }
+
+        .custom-background {
+            background-color: beige 
+        }
     </style>
     <div class="container">
         <div class="row">
@@ -49,18 +53,17 @@
             {% csrf_token %}
             <div class="row p-3">
                     <div class="col-sm-4 text-center ">
-                        <input class="btn-check" type="radio" name="term" id="radio1" autocomplete="off" value="short_term" onclick=timeValue()>
+                        <input class="btn-check" type="radio" name="term" id="radio1" autocomplete="off" value="short_term">
                         <label class="btn btn-outline-primary" for="radio1">Last Month</label>
                     </div>
                     <div class="col-sm-4 text-center">
-                        <input class="btn-check" type="radio" name="term" id="radio2" autocomplete="off" value="medium_term" onclick=timeValue()>
+                        <input class="btn-check" type="radio" name="term" id="radio2" autocomplete="off" value="medium_term">
                         <label class="btn btn-outline-primary" for="radio2">Last 6 Months</label>
                     </div>
                     <div class="col-sm-4 text-center">
-                        <input class="btn-check" type="radio" name="term" id="radio3" autocomplete="off" value="long_term" onclick=timeValue() checked>
+                        <input class="btn-check" type="radio" name="term" id="radio3" autocomplete="off" value="long_term" checked>
                         <label class="btn btn-outline-primary" for="radio3">All Time</label>
                     </div>
-                    <div id="term"></div>
             </div>
             <div class="row custom-row justify-content-center align-items-center">
                 <div class="col bg-darkgrey radiobuttons-container">
@@ -78,7 +81,7 @@
                         <button class="btn btn-primary" type="submit" form="toArtistForm" id="result">Generate Customizable Playlist</button> 
                 </div>
             </div>
-        </form>
+        </form> 
     </div>
     
     <script>
