@@ -16,7 +16,7 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
     client_secret="6127244cbcc64eaa8a20959bb161c7bb",
     redirect_uri="http://localhost", scope=scopes,))
 
-top_artists = sp.current_user_top_artists(30, 0, "long_term")
+top_artists = sp.current_user_top_artists(30, 0, "short_term")
 
 
 # returns a list of artists that pertain to the genre provided
