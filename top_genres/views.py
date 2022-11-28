@@ -16,7 +16,7 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
     client_secret="6127244cbcc64eaa8a20959bb161c7bb",
     redirect_uri="http://localhost", scope=scopes,))
 
-top_artists = sp.current_user_top_artists(30, 0, "long_term")
+top_artists = sp.current_user_top_artists(30, 0, "short_term")
 
 
 # returns a list of artists that pertain to the genre provided
@@ -119,7 +119,32 @@ def generate_playlist_view(request):
 def generate_menu_view(request):
     context = {}
     genre_index = request.POST.get('genre_index', None)
-    context['genre_index'] = genre_index
+    term = request.POST.get('term', None)
+
+    genre_list = get_genre_list()
+    selected_genre = genre_list[int(genre_index)-1]
+
+    unfiltered_artist_list = get_artists_of_genre(selected_genre)
+
+    
+    #named_artist_list = []
+    #for artist in unfiltered_artist_list:
+    #    named_artist_list.append(artist["name"])
+
+    #artist_id_list = []
+    #for artist in unfiltered_artist_list:
+    #    artist_id_list.append(artist["id"])
+
+    #artist_list = {}
+    #for artist in unfiltered_artist_list:
+    #    artist_list
+
+
+    context['term'] = term
+
+    context['artist_list'] = unfiltered_artist_list
+
+    #context['id'] = artist_id_list
 
     return render(request, "generate_menu.html", context)
 
