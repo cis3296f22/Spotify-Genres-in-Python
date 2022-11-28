@@ -4,6 +4,8 @@ from django.shortcuts import render
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
+# Create separate function that returns genre list
+# Pass the genre list to any view/template that needs it
 
 # Create your views here.
 from django.http import HttpResponse
@@ -14,15 +16,24 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
     client_secret="6127244cbcc64eaa8a20959bb161c7bb",
     redirect_uri="http://localhost", scope=scopes,))
 
+top_artists = sp.current_user_top_artists(30, 0, "short_term")
 
-def login_view(request):
-    return render(request, "login.html",{})
 
-def redirect_view(request):
-    return render(request, "<h1>Redirect</h1>", {})
+# returns a list of artists that pertain to the genre provided
+def get_artists_of_genre(genre):
+   
+    artist_of_genre_list = []
+    for artist in top_artists["items"]:
+        if genre in artist["genres"]:
+            artist_of_genre_list.append(artist)
+            
+    # Returns as a dictionary with several fields. Must be filtered further
+    return artist_of_genre_list
 
-def genre_view(request):
-    
+                
+#returns list of top ten genres 
+def get_genre_list():
+
       # Increment value in dictionary every time genre is found
     def get_genre_frequency(genres, genreDict):
 
@@ -32,33 +43,30 @@ def genre_view(request):
             else: 
                 genreDict[genre] = 1
         return genreDict
-
-    top_artists = sp.current_user_top_artists(20, 0, "short_term")
     
     # Create empty dictionary, put in artists and get frequency of genres from artists 
     genreDict = {}
     for artist in top_artists["items"]:
         get_genre_frequency(artist["genres"], genreDict)
-        
+        #for genre in ten genres
+        #if genre in artist
+        #add artist seed
+        '''for genre in top_ten_genres:
+            if genre in artist:
+                artist_id = artist["id"]'''
+                 
     # Sort genre count from highest to lowest frequency
     sorted_genres = sorted(genreDict.items(), reverse = True, key=lambda kv:
         (kv[1], kv[0]))
     top_ten_genres = sorted_genres[0:10]
     filtered_top_genres = [x[0] for x in top_ten_genres]
     
-    
-    context = {
-        "data" : filtered_top_genres
-    }
-      
-    return render(request, "genres.html", context)
+    return filtered_top_genres
 
-def generate_playlist_view(request):
+# returns a list of songs generated from the provided seeds
+def get_generated_playlist(seeds):
     
-  
-    
-    # (recommendations(seed_genres = top_tengenres[user_input_int + 1]))
-    genre_recommendations = sp.recommendations(seed_artists=["4gzpq5DPGxSnKTe4SA8HAU"], limit=20)
+    genre_recommendations = sp.recommendations(seed_artists=seeds, limit=20)
     
     new_list = []
     song = ""
@@ -71,17 +79,73 @@ def generate_playlist_view(request):
             artist_name = artist["name"]
         song = track_name + " by " + artist_name
         new_list.append(song)
-            
+        
+    return new_list
+
+
+
+
+#---------------------------
+# ----------VIEWS-----------
+#---------------------------
+
+def login_view(request):
+    return render(request, "login.html",{})
+
+def redirect_view(request):
+    return render(request, "<h1>Redirect</h1>", {})
+
+def genre_view(request):
+    
+    genre_list = get_genre_list()
     context = {
-        "list" : new_list
+        "data" : genre_list
+    }
+    
+    return render(request, "genres.html", context)
+
+def generate_playlist_view(request):
+    
+    # still uses test seed
+            
+    test_list = get_generated_playlist(["4gzpq5DPGxSnKTe4SA8HAU"])
+    
+    context = {
+        "list" : test_list
     }
     
     return render(request, "playlist_generated.html", context)
 
 def generate_menu_view(request):
+    context = {}
+    genre_index = request.POST.get('genre_index', None)
+    term = request.POST.get('term', None)
+
+    genre_list = get_genre_list()
+    selected_genre = genre_list[int(genre_index)-1]
+
+    unfiltered_artist_list = get_artists_of_genre(selected_genre)
+
     
-    return render(request, "generate_menu.html", )
+    #named_artist_list = []
+    #for artist in unfiltered_artist_list:
+    #    named_artist_list.append(artist["name"])
+
+    #artist_id_list = []
+    #for artist in unfiltered_artist_list:
+    #    artist_id_list.append(artist["id"])
+
+    #artist_list = {}
+    #for artist in unfiltered_artist_list:
+    #    artist_list
 
 
-#def get_genre_view(request, genreData):
-#    chosenGenre = 
+    context['term'] = term
+
+    context['artist_list'] = unfiltered_artist_list
+
+    #context['id'] = artist_id_list
+
+    return render(request, "generate_menu.html", context)
+
+#use {{ genre_index }}
