@@ -113,7 +113,7 @@ def generate_playlist_view(request):
     test_list = get_generated_playlist(["4gzpq5DPGxSnKTe4SA8HAU"])
     
     context = {
-        "playlist_list" : test_list
+        "playlist_list" : artist_list
     }
     
     return render(request, "playlist_generated.html", context)
@@ -129,8 +129,15 @@ def generate_menu_view(request):
     for artist in unfiltered_artist_list:
         named_artist_list.append(artist["name"])
         
+    # for i in dictinoary
+        # key of i = artist_list[i]
+        # value of i = artist_id_list[i]
+    
+    # CONTESXT [dictionary] = dictionary
+    
+    # 
         
-    context['genre_index'] = named_artist_list
+    context['named_artist_list'] = named_artist_list
     
     return render(request, "generate_menu.html", context)
 
