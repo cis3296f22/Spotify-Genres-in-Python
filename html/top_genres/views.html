@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>top_genres.views API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>top_genres.views</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from multiprocessing import context
+from django import forms
+from django.shortcuts import render
+import spotipy
+from spotipy.oauth2 import SpotifyOAuth
+
+# Create separate function that returns genre list
+# Pass the genre list to any view/template that needs it
+
+# Create your views here.
+from django.http import HttpResponse
+
+scopes = [&#34;user-library-read&#34;, &#34;user-top-read&#34;, &#34;playlist-modify-public&#34;]
+sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
+    client_id=&#34;c6f354662a924f81b9af0aa615832c2b&#34;,
+    client_secret=&#34;6127244cbcc64eaa8a20959bb161c7bb&#34;,
+    redirect_uri=&#34;http://localhost&#34;, scope=scopes,))
+
+def get_top_artists(term):
+    &#39;&#39;&#39;Returns a list of the user&#39;s top listened-to artists.
+    params: term = the time period from which the Spotify API retreives data.&#39;&#39;&#39;
+    top_artists = sp.current_user_top_artists(50, 0, term)
+    return top_artists
+
+
+def get_artists_of_genre(genre, term):
+    &#39;&#39;&#39;Returns a list of artists pertaining to the given genre.
+    params: genre = the genre to retreive artists from.
+            term = the time period from which the Spotify API retreives data.&#39;&#39;&#39;
+    top_artists = get_top_artists(term)
+    artist_of_genre_list = []
+    for artist in top_artists[&#34;items&#34;]:
+        if genre in artist[&#34;genres&#34;]:
+            artist_of_genre_list.append(artist)
+            
+    # Returns as a dictionary with several fields. Must be filtered further
+    return artist_of_genre_list
+
+                
+
+def get_genre_list(term):
+    &#39;&#39;&#39;Returns a list of the user&#39;s top ten most listened-to genres
+    params: genre = the genre to retreive artists from.&#39;&#39;&#39;
+
+      # Increment value in dictionary every time genre is found
+    def get_genre_frequency(genres, genreDict):
+
+        for genre in genres:
+            if genre in genreDict:
+                genreDict[genre] += 1
+            else: 
+                genreDict[genre] = 1
+        return genreDict
+    
+    # Create empty dictionary, put in artists and get frequency of genres from artists 
+    genreDict = {}
+    
+    top_artists = get_top_artists(term)
+
+    for artist in top_artists[&#34;items&#34;]:
+        get_genre_frequency(artist[&#34;genres&#34;], genreDict)
+        #for genre in ten genres
+        #if genre in artist
+        #add artist seed
+        &#39;&#39;&#39;for genre in top_ten_genres:
+            if genre in artist:
+                artist_id = artist[&#34;id&#34;]&#39;&#39;&#39;
+                 
+    # Sort genre count from highest to lowest frequency
+    sorted_genres = sorted(genreDict.items(), reverse = True, key=lambda kv:
+        (kv[1], kv[0]))
+    top_ten_genres = sorted_genres[0:10]
+    filtered_top_genres = [x[0] for x in top_ten_genres]
+    
+    return filtered_top_genres
+
+# returns a list of songs generated from the provided seeds
+def get_generated_playlist(seeds):
+    &#39;&#39;&#39;Returns a list of songs generated from a given list of artist seeds.
+    params: seeds = a list of artist ids used as seeds for the recommendation API function.&#39;&#39;&#39;
+
+    
+    genre_recommendations = sp.recommendations(seed_artists=seeds, limit=20)
+    
+    new_list = []
+    song = &#34;&#34;
+    recommended_list = (genre_recommendations[&#34;tracks&#34;])
+    for items in recommended_list:
+        track_name = items[&#34;name&#34;]
+        artists = items[&#34;artists&#34;]
+        for artist in artists:
+            artist_name = artist[&#34;name&#34;]
+        song = track_name + &#34; by &#34; + artist_name
+        new_list.append(song)
+        
+    return recommended_list
+
+
+
+
+#---------------------------
+# ----------VIEWS-----------
+#---------------------------
+
+def login_view(request):
+    &#39;&#39;&#39;Returns a login page
+    params: request = the HTTP request needed to render the HTML template.&#39;&#39;&#39;
+    return render(request, &#34;login.html&#34;,{})
+
+def genre_view(request):
+    &#39;&#39;&#39;Returns a page with term and genre radio buttons rendered,
+    as well as a button to open the artist selection page.
+    params: request = the HTTP request needed to render the HTML template.&#39;&#39;&#39;
+    context = {}
+    term = request.POST.get(&#39;term&#39;, None)
+    genre_list = get_genre_list(term)
+    context[&#39;data&#39;] = genre_list
+    context[&#39;terms&#39;] = term
+    
+    return render(request, &#34;genres.html&#34;, context)
+
+def generate_playlist_view(request):
+    &#39;&#39;&#39;Returns a page with a list of songs and a button
+    that adds the songs to a playlist in the user&#39;s Spotify library.
+    params: request = the HTTP request needed to render the HTML template.&#39;&#39;&#39;
+    
+    context = {}
+    
+    artist_seeds = []
+    artist_dict = {}
+    artist_dict[&#39;art1&#39;] = request.POST.get(&#39;1&#39;, None)
+    artist_dict[&#39;art2&#39;] = request.POST.get(&#39;2&#39;, None)
+    artist_dict[&#39;art3&#39;] = request.POST.get(&#39;3&#39;, None)
+    artist_dict[&#39;art4&#39;] = request.POST.get(&#39;4&#39;, None)
+    artist_dict[&#39;art5&#39;] = request.POST.get(&#39;5&#39;, None)
+    
+    for key in artist_dict:
+        if artist_dict[key] is not None: 
+            artist_seeds.append(artist_dict[key])
+            
+    artist_list = []
+    
+    song_list = get_generated_playlist(artist_seeds)
+    for items in song_list:
+        track_name = items[&#34;name&#34;]
+        artists = items[&#34;artists&#34;]
+        for artist in artists:
+            artist_name = artist[&#34;name&#34;]
+        artist_list.append(artist_name)
+        
+
+    context[&#39;song_list&#39;] = song_list
+    context[&#39;artist_list&#39;] = artist_list
+
+    return render(request, &#34;playlist_generated.html&#34;, context)
+
+def generate_menu_view(request):
+    &#39;&#39;&#39;Returns a page that renders a list of artists pertaining
+    to the genre selected on the previous page.
+    params: request = the HTTP request needed to render the HTML template.&#39;&#39;&#39;
+    context = {}
+    genre_index = request.POST.get(&#39;genre_index&#39;, None)
+    term = request.POST.get(&#39;term&#39;, None)
+
+    genre_list = get_genre_list(term)
+    selected_genre = genre_list[int(genre_index)-1]
+
+    unfiltered_artist_list = get_artists_of_genre(selected_genre, term)
+
+    context[&#39;term&#39;] = term
+
+    context[&#39;artist_list&#39;] = unfiltered_artist_list
+
+    return render(request, &#34;generate_menu.html&#34;, context)
+
+
+def playlist_confirmation_view(request):
+    &#39;&#39;&#39;Returns a page that adds songs in the previously displayed
+    list of songs via http requests. A confirmation message is displayed.
+    params: request = the HTTP request needed to render the HTML template.&#39;&#39;&#39;
+    
+    playlist = []
+    song_dict = {}
+    song_dict[&#39;song1&#39;] = request.POST.get(&#39;1&#39;, None)
+    song_dict[&#39;song2&#39;] = request.POST.get(&#39;2&#39;, None)
+    song_dict[&#39;song3&#39;] = request.POST.get(&#39;3&#39;, None)
+    song_dict[&#39;song4&#39;] = request.POST.get(&#39;4&#39;, None)
+    song_dict[&#39;song5&#39;] = request.POST.get(&#39;5&#39;, None)
+    song_dict[&#39;song6&#39;] = request.POST.get(&#39;6&#39;, None)
+    song_dict[&#39;song7&#39;] = request.POST.get(&#39;7&#39;, None)
+    song_dict[&#39;song8&#39;] = request.POST.get(&#39;8&#39;, None)
+    song_dict[&#39;song9&#39;] = request.POST.get(&#39;9&#39;, None)
+    song_dict[&#39;song10&#39;] = request.POST.get(&#39;10&#39;, None)
+    song_dict[&#39;song11&#39;] = request.POST.get(&#39;11&#39;, None)
+    song_dict[&#39;song12&#39;] = request.POST.get(&#39;12&#39;, None)
+    song_dict[&#39;song13&#39;] = request.POST.get(&#39;13&#39;, None)
+    song_dict[&#39;song14&#39;] = request.POST.get(&#39;14&#39;, None)
+    song_dict[&#39;song15&#39;] = request.POST.get(&#39;15&#39;, None)
+    song_dict[&#39;song16&#39;] = request.POST.get(&#39;16&#39;, None)
+    song_dict[&#39;song17&#39;] = request.POST.get(&#39;17&#39;, None)
+    song_dict[&#39;song18&#39;] = request.POST.get(&#39;18&#39;, None)
+    song_dict[&#39;song19&#39;] = request.POST.get(&#39;19&#39;, None)
+    song_dict[&#39;song20&#39;] = request.POST.get(&#39;20&#39;, None)
+    
+    for key in  song_dict:
+        if  song_dict[key] is not None: 
+            playlist.append(song_dict[key])
+    
+    user_id = sp.me()[&#34;id&#34;]
+    # get ids of song_list 
+    
+    new_playlist = sp.user_playlist_create(user_id, &#34;My Customized Playlist&#34;)
+
+    sp.user_playlist_add_tracks(user_id, new_playlist[&#34;id&#34;], playlist)
+    
+    
+    return render(request, &#34;playlist_confirmation.html&#34;)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="top_genres.views.generate_menu_view"><code class="name flex">
+<span>def <span class="ident">generate_menu_view</span></span>(<span>request)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a page that renders a list of artists pertaining
+to the genre selected on the previous page.
+params: request = the HTTP request needed to render the HTML template.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_menu_view(request):
+    &#39;&#39;&#39;Returns a page that renders a list of artists pertaining
+    to the genre selected on the previous page.
+    params: request = the HTTP request needed to render the HTML template.&#39;&#39;&#39;
+    context = {}
+    genre_index = request.POST.get(&#39;genre_index&#39;, None)
+    term = request.POST.get(&#39;term&#39;, None)
+
+    genre_list = get_genre_list(term)
+    selected_genre = genre_list[int(genre_index)-1]
+
+    unfiltered_artist_list = get_artists_of_genre(selected_genre, term)
+
+    context[&#39;term&#39;] = term
+
+    context[&#39;artist_list&#39;] = unfiltered_artist_list
+
+    return render(request, &#34;generate_menu.html&#34;, context)</code></pre>
+</details>
+</dd>
+<dt id="top_genres.views.generate_playlist_view"><code class="name flex">
+<span>def <span class="ident">generate_playlist_view</span></span>(<span>request)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a page with a list of songs and a button
+that adds the songs to a playlist in the user's Spotify library.
+params: request = the HTTP request needed to render the HTML template.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_playlist_view(request):
+    &#39;&#39;&#39;Returns a page with a list of songs and a button
+    that adds the songs to a playlist in the user&#39;s Spotify library.
+    params: request = the HTTP request needed to render the HTML template.&#39;&#39;&#39;
+    
+    context = {}
+    
+    artist_seeds = []
+    artist_dict = {}
+    artist_dict[&#39;art1&#39;] = request.POST.get(&#39;1&#39;, None)
+    artist_dict[&#39;art2&#39;] = request.POST.get(&#39;2&#39;, None)
+    artist_dict[&#39;art3&#39;] = request.POST.get(&#39;3&#39;, None)
+    artist_dict[&#39;art4&#39;] = request.POST.get(&#39;4&#39;, None)
+    artist_dict[&#39;art5&#39;] = request.POST.get(&#39;5&#39;, None)
+    
+    for key in artist_dict:
+        if artist_dict[key] is not None: 
+            artist_seeds.append(artist_dict[key])
+            
+    artist_list = []
+    
+    song_list = get_generated_playlist(artist_seeds)
+    for items in song_list:
+        track_name = items[&#34;name&#34;]
+        artists = items[&#34;artists&#34;]
+        for artist in artists:
+            artist_name = artist[&#34;name&#34;]
+        artist_list.append(artist_name)
+        
+
+    context[&#39;song_list&#39;] = song_list
+    context[&#39;artist_list&#39;] = artist_list
+
+    return render(request, &#34;playlist_generated.html&#34;, context)</code></pre>
+</details>
+</dd>
+<dt id="top_genres.views.genre_view"><code class="name flex">
+<span>def <span class="ident">genre_view</span></span>(<span>request)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a page with term and genre radio buttons rendered,
+as well as a button to open the artist selection page.
+params: request = the HTTP request needed to render the HTML template.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def genre_view(request):
+    &#39;&#39;&#39;Returns a page with term and genre radio buttons rendered,
+    as well as a button to open the artist selection page.
+    params: request = the HTTP request needed to render the HTML template.&#39;&#39;&#39;
+    context = {}
+    term = request.POST.get(&#39;term&#39;, None)
+    genre_list = get_genre_list(term)
+    context[&#39;data&#39;] = genre_list
+    context[&#39;terms&#39;] = term
+    
+    return render(request, &#34;genres.html&#34;, context)</code></pre>
+</details>
+</dd>
+<dt id="top_genres.views.get_artists_of_genre"><code class="name flex">
+<span>def <span class="ident">get_artists_of_genre</span></span>(<span>genre, term)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a list of artists pertaining to the given genre.
+params: genre = the genre to retreive artists from.
+term = the time period from which the Spotify API retreives data.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_artists_of_genre(genre, term):
+    &#39;&#39;&#39;Returns a list of artists pertaining to the given genre.
+    params: genre = the genre to retreive artists from.
+            term = the time period from which the Spotify API retreives data.&#39;&#39;&#39;
+    top_artists = get_top_artists(term)
+    artist_of_genre_list = []
+    for artist in top_artists[&#34;items&#34;]:
+        if genre in artist[&#34;genres&#34;]:
+            artist_of_genre_list.append(artist)
+            
+    # Returns as a dictionary with several fields. Must be filtered further
+    return artist_of_genre_list</code></pre>
+</details>
+</dd>
+<dt id="top_genres.views.get_generated_playlist"><code class="name flex">
+<span>def <span class="ident">get_generated_playlist</span></span>(<span>seeds)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a list of songs generated from a given list of artist seeds.
+params: seeds = a list of artist ids used as seeds for the recommendation API function.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_generated_playlist(seeds):
+    &#39;&#39;&#39;Returns a list of songs generated from a given list of artist seeds.
+    params: seeds = a list of artist ids used as seeds for the recommendation API function.&#39;&#39;&#39;
+
+    
+    genre_recommendations = sp.recommendations(seed_artists=seeds, limit=20)
+    
+    new_list = []
+    song = &#34;&#34;
+    recommended_list = (genre_recommendations[&#34;tracks&#34;])
+    for items in recommended_list:
+        track_name = items[&#34;name&#34;]
+        artists = items[&#34;artists&#34;]
+        for artist in artists:
+            artist_name = artist[&#34;name&#34;]
+        song = track_name + &#34; by &#34; + artist_name
+        new_list.append(song)
+        
+    return recommended_list</code></pre>
+</details>
+</dd>
+<dt id="top_genres.views.get_genre_list"><code class="name flex">
+<span>def <span class="ident">get_genre_list</span></span>(<span>term)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a list of the user's top ten most listened-to genres
+params: genre = the genre to retreive artists from.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_genre_list(term):
+    &#39;&#39;&#39;Returns a list of the user&#39;s top ten most listened-to genres
+    params: genre = the genre to retreive artists from.&#39;&#39;&#39;
+
+      # Increment value in dictionary every time genre is found
+    def get_genre_frequency(genres, genreDict):
+
+        for genre in genres:
+            if genre in genreDict:
+                genreDict[genre] += 1
+            else: 
+                genreDict[genre] = 1
+        return genreDict
+    
+    # Create empty dictionary, put in artists and get frequency of genres from artists 
+    genreDict = {}
+    
+    top_artists = get_top_artists(term)
+
+    for artist in top_artists[&#34;items&#34;]:
+        get_genre_frequency(artist[&#34;genres&#34;], genreDict)
+        #for genre in ten genres
+        #if genre in artist
+        #add artist seed
+        &#39;&#39;&#39;for genre in top_ten_genres:
+            if genre in artist:
+                artist_id = artist[&#34;id&#34;]&#39;&#39;&#39;
+                 
+    # Sort genre count from highest to lowest frequency
+    sorted_genres = sorted(genreDict.items(), reverse = True, key=lambda kv:
+        (kv[1], kv[0]))
+    top_ten_genres = sorted_genres[0:10]
+    filtered_top_genres = [x[0] for x in top_ten_genres]
+    
+    return filtered_top_genres</code></pre>
+</details>
+</dd>
+<dt id="top_genres.views.get_top_artists"><code class="name flex">
+<span>def <span class="ident">get_top_artists</span></span>(<span>term)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a list of the user's top listened-to artists.
+params: term = the time period from which the Spotify API retreives data.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_top_artists(term):
+    &#39;&#39;&#39;Returns a list of the user&#39;s top listened-to artists.
+    params: term = the time period from which the Spotify API retreives data.&#39;&#39;&#39;
+    top_artists = sp.current_user_top_artists(50, 0, term)
+    return top_artists</code></pre>
+</details>
+</dd>
+<dt id="top_genres.views.login_view"><code class="name flex">
+<span>def <span class="ident">login_view</span></span>(<span>request)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a login page
+params: request = the HTTP request needed to render the HTML template.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def login_view(request):
+    &#39;&#39;&#39;Returns a login page
+    params: request = the HTTP request needed to render the HTML template.&#39;&#39;&#39;
+    return render(request, &#34;login.html&#34;,{})</code></pre>
+</details>
+</dd>
+<dt id="top_genres.views.playlist_confirmation_view"><code class="name flex">
+<span>def <span class="ident">playlist_confirmation_view</span></span>(<span>request)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a page that adds songs in the previously displayed
+list of songs via http requests. A confirmation message is displayed.
+params: request = the HTTP request needed to render the HTML template.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def playlist_confirmation_view(request):
+    &#39;&#39;&#39;Returns a page that adds songs in the previously displayed
+    list of songs via http requests. A confirmation message is displayed.
+    params: request = the HTTP request needed to render the HTML template.&#39;&#39;&#39;
+    
+    playlist = []
+    song_dict = {}
+    song_dict[&#39;song1&#39;] = request.POST.get(&#39;1&#39;, None)
+    song_dict[&#39;song2&#39;] = request.POST.get(&#39;2&#39;, None)
+    song_dict[&#39;song3&#39;] = request.POST.get(&#39;3&#39;, None)
+    song_dict[&#39;song4&#39;] = request.POST.get(&#39;4&#39;, None)
+    song_dict[&#39;song5&#39;] = request.POST.get(&#39;5&#39;, None)
+    song_dict[&#39;song6&#39;] = request.POST.get(&#39;6&#39;, None)
+    song_dict[&#39;song7&#39;] = request.POST.get(&#39;7&#39;, None)
+    song_dict[&#39;song8&#39;] = request.POST.get(&#39;8&#39;, None)
+    song_dict[&#39;song9&#39;] = request.POST.get(&#39;9&#39;, None)
+    song_dict[&#39;song10&#39;] = request.POST.get(&#39;10&#39;, None)
+    song_dict[&#39;song11&#39;] = request.POST.get(&#39;11&#39;, None)
+    song_dict[&#39;song12&#39;] = request.POST.get(&#39;12&#39;, None)
+    song_dict[&#39;song13&#39;] = request.POST.get(&#39;13&#39;, None)
+    song_dict[&#39;song14&#39;] = request.POST.get(&#39;14&#39;, None)
+    song_dict[&#39;song15&#39;] = request.POST.get(&#39;15&#39;, None)
+    song_dict[&#39;song16&#39;] = request.POST.get(&#39;16&#39;, None)
+    song_dict[&#39;song17&#39;] = request.POST.get(&#39;17&#39;, None)
+    song_dict[&#39;song18&#39;] = request.POST.get(&#39;18&#39;, None)
+    song_dict[&#39;song19&#39;] = request.POST.get(&#39;19&#39;, None)
+    song_dict[&#39;song20&#39;] = request.POST.get(&#39;20&#39;, None)
+    
+    for key in  song_dict:
+        if  song_dict[key] is not None: 
+            playlist.append(song_dict[key])
+    
+    user_id = sp.me()[&#34;id&#34;]
+    # get ids of song_list 
+    
+    new_playlist = sp.user_playlist_create(user_id, &#34;My Customized Playlist&#34;)
+
+    sp.user_playlist_add_tracks(user_id, new_playlist[&#34;id&#34;], playlist)
+    
+    
+    return render(request, &#34;playlist_confirmation.html&#34;)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="top_genres.views.generate_menu_view" href="#top_genres.views.generate_menu_view">generate_menu_view</a></code></li>
+<li><code><a title="top_genres.views.generate_playlist_view" href="#top_genres.views.generate_playlist_view">generate_playlist_view</a></code></li>
+<li><code><a title="top_genres.views.genre_view" href="#top_genres.views.genre_view">genre_view</a></code></li>
+<li><code><a title="top_genres.views.get_artists_of_genre" href="#top_genres.views.get_artists_of_genre">get_artists_of_genre</a></code></li>
+<li><code><a title="top_genres.views.get_generated_playlist" href="#top_genres.views.get_generated_playlist">get_generated_playlist</a></code></li>
+<li><code><a title="top_genres.views.get_genre_list" href="#top_genres.views.get_genre_list">get_genre_list</a></code></li>
+<li><code><a title="top_genres.views.get_top_artists" href="#top_genres.views.get_top_artists">get_top_artists</a></code></li>
+<li><code><a title="top_genres.views.login_view" href="#top_genres.views.login_view">login_view</a></code></li>
+<li><code><a title="top_genres.views.playlist_confirmation_view" href="#top_genres.views.playlist_confirmation_view">playlist_confirmation_view</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

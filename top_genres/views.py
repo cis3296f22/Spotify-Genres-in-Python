@@ -17,11 +17,16 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
     redirect_uri="http://localhost", scope=scopes,))
 
 def get_top_artists(term):
+    '''Returns a list of the user's top listened-to artists.
+    params: term = the time period from which the Spotify API retreives data.'''
     top_artists = sp.current_user_top_artists(50, 0, term)
     return top_artists
 
-# returns a list of artists that pertain to the genre provided
+
 def get_artists_of_genre(genre, term):
+    '''Returns a list of artists pertaining to the given genre.
+    params: genre = the genre to retreive artists from.
+            term = the time period from which the Spotify API retreives data.'''
     top_artists = get_top_artists(term)
     artist_of_genre_list = []
     for artist in top_artists["items"]:
@@ -32,8 +37,10 @@ def get_artists_of_genre(genre, term):
     return artist_of_genre_list
 
                 
-#returns list of top ten genres 
+
 def get_genre_list(term):
+    '''Returns a list of the user's top ten most listened-to genres
+    params: genre = the genre to retreive artists from.'''
 
       # Increment value in dictionary every time genre is found
     def get_genre_frequency(genres, genreDict):
@@ -69,6 +76,9 @@ def get_genre_list(term):
 
 # returns a list of songs generated from the provided seeds
 def get_generated_playlist(seeds):
+    '''Returns a list of songs generated from a given list of artist seeds.
+    params: seeds = a list of artist ids used as seeds for the recommendation API function.'''
+
     
     genre_recommendations = sp.recommendations(seed_artists=seeds, limit=20)
     
@@ -93,12 +103,14 @@ def get_generated_playlist(seeds):
 #---------------------------
 
 def login_view(request):
+    '''Returns a login page
+    params: request = the HTTP request needed to render the HTML template.'''
     return render(request, "login.html",{})
 
-def redirect_view(request):
-    return render(request, "<h1>Redirect</h1>", {})
-
 def genre_view(request):
+    '''Returns a page with term and genre radio buttons rendered,
+    as well as a button to open the artist selection page.
+    params: request = the HTTP request needed to render the HTML template.'''
     context = {}
     term = request.POST.get('term', None)
     genre_list = get_genre_list(term)
@@ -108,6 +120,9 @@ def genre_view(request):
     return render(request, "genres.html", context)
 
 def generate_playlist_view(request):
+    '''Returns a page with a list of songs and a button
+    that adds the songs to a playlist in the user's Spotify library.
+    params: request = the HTTP request needed to render the HTML template.'''
     
     context = {}
     
@@ -133,17 +148,16 @@ def generate_playlist_view(request):
             artist_name = artist["name"]
         artist_list.append(artist_name)
         
-    
-    
-    #context = {
-    #    "list" : test_list
-    #}
+
     context['song_list'] = song_list
     context['artist_list'] = artist_list
 
     return render(request, "playlist_generated.html", context)
 
 def generate_menu_view(request):
+    '''Returns a page that renders a list of artists pertaining
+    to the genre selected on the previous page.
+    params: request = the HTTP request needed to render the HTML template.'''
     context = {}
     genre_index = request.POST.get('genre_index', None)
     term = request.POST.get('term', None)
@@ -153,29 +167,17 @@ def generate_menu_view(request):
 
     unfiltered_artist_list = get_artists_of_genre(selected_genre, term)
 
-    
-    #named_artist_list = []
-    #for artist in unfiltered_artist_list:
-    #    named_artist_list.append(artist["name"])
-
-    #artist_id_list = []
-    #for artist in unfiltered_artist_list:
-    #    artist_id_list.append(artist["id"])
-
-    #artist_list = {}
-    #for artist in unfiltered_artist_list:
-    #    artist_list
-
-
     context['term'] = term
 
     context['artist_list'] = unfiltered_artist_list
 
     return render(request, "generate_menu.html", context)
 
-#use {{ genre_index }}
 
 def playlist_confirmation_view(request):
+    '''Returns a page that adds songs in the previously displayed
+    list of songs via http requests. A confirmation message is displayed.
+    params: request = the HTTP request needed to render the HTML template.'''
     
     playlist = []
     song_dict = {}
@@ -204,8 +206,7 @@ def playlist_confirmation_view(request):
         if  song_dict[key] is not None: 
             playlist.append(song_dict[key])
     
-    user_id = sp.me()["id"]
-    # get ids of song_list 
+    user_id = sp.me()["id"] 
     
     new_playlist = sp.user_playlist_create(user_id, "My Customized Playlist")
 
