@@ -122,13 +122,24 @@ def generate_playlist_view(request):
     for key in artist_dict:
         if artist_dict[key] is not None: 
             artist_seeds.append(artist_dict[key])
+            
+    artist_list = []
     
     song_list = get_generated_playlist(artist_seeds)
+    for items in song_list:
+        track_name = items["name"]
+        artists = items["artists"]
+        for artist in artists:
+            artist_name = artist["name"]
+        artist_list.append(artist_name)
+        
+    
     
     #context = {
     #    "list" : test_list
     #}
     context['song_list'] = song_list
+    context['artist_list'] = artist_list
 
     return render(request, "playlist_generated.html", context)
 
@@ -159,8 +170,6 @@ def generate_menu_view(request):
     context['term'] = term
 
     context['artist_list'] = unfiltered_artist_list
-
-    #context['id'] = artist_id_list
 
     return render(request, "generate_menu.html", context)
 
@@ -198,7 +207,7 @@ def playlist_confirmation_view(request):
     user_id = sp.me()["id"]
     # get ids of song_list 
     
-    new_playlist = sp.user_playlist_create(user_id, "test")
+    new_playlist = sp.user_playlist_create(user_id, "My Customized Playlist")
 
     sp.user_playlist_add_tracks(user_id, new_playlist["id"], playlist)
     
