@@ -2,6 +2,7 @@ from time import sleep
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
+
 def main():
 
     scopes = ["user-library-read", "user-top-read"]
@@ -49,6 +50,15 @@ def main():
     
 # Increment value in dictionary every time genre is found
 def get_genre_frequency(genres, genreDict):
+    """top gens
+
+    Args:
+        genres (_type_): _description_
+        genreDict (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """    
 
     for genre in genres:
         if genre in genreDict:

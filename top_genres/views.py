@@ -1,13 +1,18 @@
+
+
 from multiprocessing import context
 from django import forms
 from django.shortcuts import render
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
+import pydoc
+
+
 
 # Create separate function that returns genre list
-# Pass the genre list to any view/template that needs it
+# Pass the genre list to any view/template that needs it'''
 
-# Create your views here.
+#Create your views here.'''
 from django.http import HttpResponse
 
 scopes = ["user-library-read", "user-top-read"]
@@ -19,9 +24,12 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
 top_artists = sp.current_user_top_artists(30, 0, "long_term")
 
 
-# returns a list of artists that pertain to the genre provided
+#returns a list of artists that pertain to the genre provided
 def get_artists_of_genre(genre):
-   
+    """this is views
+    """ 
+    
+
     artist_of_genre_list = []
     for artist in top_artists["items"]:
         if genre in artist["genres"]:
@@ -33,6 +41,8 @@ def get_artists_of_genre(genre):
                 
 #returns list of top ten genres 
 def get_genre_list():
+    """returns list of top ten genres 
+    """    
 
       # Increment value in dictionary every time genre is found
     def get_genre_frequency(genres, genreDict):
@@ -85,9 +95,9 @@ def get_generated_playlist(seeds):
 
 
 
-#---------------------------
+'''---------------------------
 # ----------VIEWS-----------
-#---------------------------
+#---------------------------'''
 
 def login_view(request):
     return render(request, "login.html",{})
@@ -104,10 +114,10 @@ def genre_view(request):
     
     return render(request, "genres.html", context)
 
+# still uses test seed
 def generate_playlist_view(request):
     
-    # still uses test seed
-            
+  
     test_list = get_generated_playlist(["4gzpq5DPGxSnKTe4SA8HAU"])
     
     context = {
