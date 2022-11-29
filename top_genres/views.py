@@ -10,7 +10,7 @@ from spotipy.oauth2 import SpotifyOAuth
 # Create your views here.
 from django.http import HttpResponse
 
-scopes = ["user-library-read", "user-top-read"]
+scopes = ["user-library-read", "user-top-read", ]
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
     client_id="c6f354662a924f81b9af0aa615832c2b",
     client_secret="6127244cbcc64eaa8a20959bb161c7bb",
@@ -109,6 +109,7 @@ def generate_playlist_view(request):
     # still uses test seed
             
     test_list = get_generated_playlist(["4gzpq5DPGxSnKTe4SA8HAU"])
+    #test_list = get_artists_of_genre('pop')
     
     context = {
         "list" : test_list
@@ -125,7 +126,11 @@ def generate_menu_view(request):
     selected_genre = genre_list[int(genre_index)-1]
 
     unfiltered_artist_list = get_artists_of_genre(selected_genre)
-
+    
+    for artist in unfiltered_artist_list:
+        artist_name = artist['name']
+        artist_id = artist['id']
+        
     
     #named_artist_list = []
     #for artist in unfiltered_artist_list:
@@ -149,3 +154,10 @@ def generate_menu_view(request):
     return render(request, "generate_menu.html", context)
 
 #use {{ genre_index }}
+def playlist_confirmation_view(request):
+    
+    user_id = sp.me()["id"]
+    sp.user_playlist_create(user_id, "test")
+    
+    
+    return render(request, "playlist_confirmation.html")
