@@ -10,18 +10,23 @@ from spotipy.oauth2 import SpotifyOAuth
 # Create your views here.
 from django.http import HttpResponse
 
-scopes = ["user-library-read", "user-top-read"]
+scopes = ["user-library-read", "user-top-read", "playlist-modify-public"]
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
     client_id="c6f354662a924f81b9af0aa615832c2b",
     client_secret="6127244cbcc64eaa8a20959bb161c7bb",
     redirect_uri="http://localhost", scope=scopes,))
 
 def get_top_artists(term):
+    '''Returns a list of the user's top listened-to artists.
+    params: term = the time period from which the Spotify API retreives data.'''
     top_artists = sp.current_user_top_artists(50, 0, term)
     return top_artists
 
-# returns a list of artists that pertain to the genre provided
+
 def get_artists_of_genre(genre, term):
+    '''Returns a list of artists pertaining to the given genre.
+    params: genre = the genre to retreive artists from.
+            term = the time period from which the Spotify API retreives data.'''
     top_artists = get_top_artists(term)
     artist_of_genre_list = []
     for artist in top_artists["items"]:
@@ -32,8 +37,10 @@ def get_artists_of_genre(genre, term):
     return artist_of_genre_list
 
                 
-#returns list of top ten genres 
+
 def get_genre_list(term):
+    '''Returns a list of the user's top ten most listened-to genres
+    params: genre = the genre to retreive artists from.'''
 
       # Increment value in dictionary every time genre is found
     def get_genre_frequency(genres, genreDict):
@@ -69,12 +76,14 @@ def get_genre_list(term):
 
 # returns a list of songs generated from the provided seeds
 def get_generated_playlist(seeds):
+    '''Returns a list of songs generated from a given list of artist seeds.
+    params: seeds = a list of artist ids used as seeds for the recommendation API function.'''
+
     
     genre_recommendations = sp.recommendations(seed_artists=seeds, limit=20)
     
     new_list = []
     song = ""
-    print(sp.recommendation_genre_seeds())
     recommended_list = (genre_recommendations["tracks"])
     for items in recommended_list:
         track_name = items["name"]
@@ -84,7 +93,7 @@ def get_generated_playlist(seeds):
         song = track_name + " by " + artist_name
         new_list.append(song)
         
-    return new_list
+    return recommended_list
 
 
 
@@ -94,12 +103,14 @@ def get_generated_playlist(seeds):
 #---------------------------
 
 def login_view(request):
+    '''Returns a login page
+    params: request = the HTTP request needed to render the HTML template.'''
     return render(request, "login.html",{})
 
-def redirect_view(request):
-    return render(request, "<h1>Redirect</h1>", {})
-
 def genre_view(request):
+    '''Returns a page with term and genre radio buttons rendered,
+    as well as a button to open the artist selection page.
+    params: request = the HTTP request needed to render the HTML template.'''
     context = {}
     term = request.POST.get('term', None)
     genre_list = get_genre_list(term)
@@ -109,11 +120,11 @@ def genre_view(request):
     return render(request, "genres.html", context)
 
 def generate_playlist_view(request):
+    '''Returns a page with a list of songs and a button
+    that adds the songs to a playlist in the user's Spotify library.
+    params: request = the HTTP request needed to render the HTML template.'''
     
     context = {}
-    # still uses test seed
-
-           
     
     artist_seeds = []
     artist_dict = {}
@@ -126,17 +137,27 @@ def generate_playlist_view(request):
     for key in artist_dict:
         if artist_dict[key] is not None: 
             artist_seeds.append(artist_dict[key])
+            
+    artist_list = []
     
     song_list = get_generated_playlist(artist_seeds)
-    
-    #context = {
-    #    "list" : test_list
-    #}
+    for items in song_list:
+        track_name = items["name"]
+        artists = items["artists"]
+        for artist in artists:
+            artist_name = artist["name"]
+        artist_list.append(artist_name)
+        
+
     context['song_list'] = song_list
+    context['artist_list'] = artist_list
 
     return render(request, "playlist_generated.html", context)
 
 def generate_menu_view(request):
+    '''Returns a page that renders a list of artists pertaining
+    to the genre selected on the previous page.
+    params: request = the HTTP request needed to render the HTML template.'''
     context = {}
     genre_index = request.POST.get('genre_index', None)
     term = request.POST.get('term', None)
@@ -146,26 +167,50 @@ def generate_menu_view(request):
 
     unfiltered_artist_list = get_artists_of_genre(selected_genre, term)
 
-    
-    #named_artist_list = []
-    #for artist in unfiltered_artist_list:
-    #    named_artist_list.append(artist["name"])
-
-    #artist_id_list = []
-    #for artist in unfiltered_artist_list:
-    #    artist_id_list.append(artist["id"])
-
-    #artist_list = {}
-    #for artist in unfiltered_artist_list:
-    #    artist_list
-
-
     context['term'] = term
 
     context['artist_list'] = unfiltered_artist_list
 
-    #context['id'] = artist_id_list
-
     return render(request, "generate_menu.html", context)
 
-#use {{ genre_index }}
+
+def playlist_confirmation_view(request):
+    '''Returns a page that adds songs in the previously displayed
+    list of songs via http requests. A confirmation message is displayed.
+    params: request = the HTTP request needed to render the HTML template.'''
+    
+    playlist = []
+    song_dict = {}
+    song_dict['song1'] = request.POST.get('1', None)
+    song_dict['song2'] = request.POST.get('2', None)
+    song_dict['song3'] = request.POST.get('3', None)
+    song_dict['song4'] = request.POST.get('4', None)
+    song_dict['song5'] = request.POST.get('5', None)
+    song_dict['song6'] = request.POST.get('6', None)
+    song_dict['song7'] = request.POST.get('7', None)
+    song_dict['song8'] = request.POST.get('8', None)
+    song_dict['song9'] = request.POST.get('9', None)
+    song_dict['song10'] = request.POST.get('10', None)
+    song_dict['song11'] = request.POST.get('11', None)
+    song_dict['song12'] = request.POST.get('12', None)
+    song_dict['song13'] = request.POST.get('13', None)
+    song_dict['song14'] = request.POST.get('14', None)
+    song_dict['song15'] = request.POST.get('15', None)
+    song_dict['song16'] = request.POST.get('16', None)
+    song_dict['song17'] = request.POST.get('17', None)
+    song_dict['song18'] = request.POST.get('18', None)
+    song_dict['song19'] = request.POST.get('19', None)
+    song_dict['song20'] = request.POST.get('20', None)
+    
+    for key in  song_dict:
+        if  song_dict[key] is not None: 
+            playlist.append(song_dict[key])
+    
+    user_id = sp.me()["id"] 
+    
+    new_playlist = sp.user_playlist_create(user_id, "My Customized Playlist")
+
+    sp.user_playlist_add_tracks(user_id, new_playlist["id"], playlist)
+    
+    
+    return render(request, "playlist_confirmation.html")
