@@ -7,5 +7,6 @@ urlpatterns = [
     path('redirect/', views.redirect_view, name='redirect_view'),
     path('generate_menu/', views.generate_menu_view, name='generate_menu_view'),
     path('playlist/', views.generate_playlist_view, name='generate_playlist_view'),
+    path('confirmation/', views.playlist_confirmation_view, name='playlist_confirmation_view'),
     #path('artist_data/', views.get_genre_view, templateGenre, name='get_genre_view')
 ]
